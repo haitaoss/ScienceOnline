@@ -556,7 +556,7 @@ nginx_conf_modify() {
     wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/nginx.conf
 
     cd /etc/nginx/conf/conf.d
-    wget https://github.com/haitaoss/ScienceOnline/blob/master/20200823shell/v2ray.conf
+    wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2ray.conf
     cd ~
 
 
