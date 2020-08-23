@@ -29,11 +29,11 @@
 [root@guest ~]# wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/install.sh && bash ./install.sh
 ```
 
-![image-20200823172406406](/Users/haitao/Pictures/TyporaPic/README/image-20200823172406406.png)
+![image-20200823172406406](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823172406406.png)
 
-![image-20200823172334090](/Users/haitao/Pictures/TyporaPic/README/image-20200823172334090.png)
+![image-20200823172334090](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823172334090.jpg)
 
-![image-20200823172915912](/Users/haitao/Pictures/TyporaPic/README/image-20200823172915912.png)
+![image-20200823172915912](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823172915912.jpg)
 
 执行完之后，再次运行脚本,然后选择1
 
@@ -41,7 +41,7 @@
 [root@guest ~]# bash install.sh 
 ```
 
-![image-20200823173641952](/Users/haitao/Pictures/TyporaPic/README/image-20200823173641952.png)
+![image-20200823173641952](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823173641952.jpg)
 
 执行完之后，再次运行脚本,然后选择2
 
@@ -49,9 +49,9 @@
 [root@guest ~]# bash install.sh 
 ```
 
-![image-20200823174536169](/Users/haitao/Pictures/TyporaPic/README/image-20200823174536169.png)
+![image-20200823174536169](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823174536169.jpg)
 
-![image-20200823173958659](/Users/haitao/Pictures/TyporaPic/README/image-20200823173958659.png)
+![image-20200823173958659](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823173958659.jpg)
 
 安装完成后会重启vps，重启之后再次执行install.sh
 
@@ -59,11 +59,11 @@
 [root@guest ~]# bash install.sh 
 ```
 
-![image-20200823173958659](/Users/haitao/Pictures/TyporaPic/README/image-20200823173958659.png)
+![image-20200823173958659](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823173958659.jpg)
 
-![image-20200823174636460](/Users/haitao/Pictures/TyporaPic/README/image-20200823174636460.png)
+![image-20200823174636460](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823174636460.jpg)
 
 可以再次执行install.sh 然后输入2查看是否加速成功
 
-![image-20200823174800040](/Users/haitao/Pictures/TyporaPic/README/image-20200823174800040.png)
+![image-20200823174800040](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823174800040.jpg)
 
