@@ -549,6 +549,18 @@ acme_cron_update() {
     fi
     judge "cron 计划任务更新"
 }
+nginx_conf_modify() {
+    systemctl stop nginx
+    cd /etc/nginx/conf
+    rm -rf nginx.conf
+    wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/nginx.conf
+
+    cd /etc/nginx/conf/conf.d
+    wget https://github.com/haitaoss/ScienceOnline/blob/master/20200823shell/v2ray.conf
+    cd ~
+
+
+}
 install_v2ray_ws_tls() {
     is_root
     check_system
@@ -566,6 +578,7 @@ install_v2ray_ws_tls() {
     # nginx_conf_add
     web_camouflage
     ssl_judge_and_install
+    nginx_conf_modify
     nginx_systemd
     # vmess_qr_config_tls_ws
     # basic_information
@@ -577,7 +590,7 @@ install_v2ray_ws_tls() {
     acme_cron_update
 }
 install_v2ui() {
-    bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2-ui.sh)
 }
 install_bbr() {
     wget -N --no-check-certificate "https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/tcp.sh"
