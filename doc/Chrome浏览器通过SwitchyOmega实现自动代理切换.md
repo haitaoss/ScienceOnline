@@ -2,7 +2,7 @@
 
 ## 介绍
 
-[原文地址，原文没有图片，这篇文章是我自己操作过后盖上的](https://www.itfanr.cc/2019/09/04/autoproxy-by-shadowsocks-and-switchyomega/)
+[原文地址，原文没有图片，这篇文章是我自己操作过后改的的](https://www.itfanr.cc/2019/09/04/autoproxy-by-shadowsocks-and-switchyomega/)
 
 使用科学上网工具v2ray 或者 ShadowSocks **选择pac模式时**。通过浏览器访问网站**不能灵活的切换**是使用代理访问网站还是使用本地链接访问（wifi）。通过Proxy SwitchyOmega 插件可以实现根据访问的网址不同**自动切换使用代理还是本地链接访问网址**。
 
@@ -54,13 +54,13 @@
 
 完成之后，点击 “应用选项” 保存设置。
 
-![image-20200728215150657](/Users/haitao/Pictures/TyporaPic/1/image-20200728215150657.png)
+![image-20200728215150657](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215150657.jpg)
 
-![image-20200728215303706](/Users/haitao/Pictures/TyporaPic/1/image-20200728215303706.png)
+![image-20200728215303706](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215303706.jpg)
 
-![image-20200728215358464](/Users/haitao/Pictures/TyporaPic/1/image-20200728215358464.png)
+![image-20200728215358464](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215358464.jpg)
 
-![image-20200728215427712](/Users/haitao/Pictures/TyporaPic/1/image-20200728215427712.png)
+![image-20200728215427712](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215427712.jpg)
 
 ### 新增智能切换模式
 
@@ -79,15 +79,15 @@
 
 这样设置的意思表示：如果网址匹配到规则列表中的网址规则，则会走代理，如果没有匹配到规则及默认的情况下，则会直接访问。
 
-![image-20200728215601809](/Users/haitao/Pictures/TyporaPic/1/image-20200728215601809.png)
+![image-20200728215601809](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215601809.jpg)
 
-![image-20200728215703366](/Users/haitao/Pictures/TyporaPic/1/image-20200728215703366.png)
+![image-20200728215703366](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215703366.jpg)
 
-![image-20200728215729282](/Users/haitao/Pictures/TyporaPic/1/image-20200728215729282.png)
+![image-20200728215729282](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728215729282.jpg)
 
-![image-20200728221003081](/Users/haitao/Pictures/TyporaPic/1/image-20200728221003081.png)
+![image-20200728221003081](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728221003081.jpg)
 
-![image-20200728221047038](/Users/haitao/Pictures/TyporaPic/1/image-20200728221047038.png)
+![image-20200728221047038](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728221047038.jpg)
 
 
 
@@ -104,9 +104,9 @@
 
 然后在Chrome浏览器中打开 `google.com` 查看是否能正常访问。
 
-![image-20200728222149232](/Users/haitao/Pictures/TyporaPic/1/image-20200728222149232.png)
+![image-20200728222149232](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728222149232.jpg)
 
-![image-20200728222401151](/Users/haitao/Pictures/TyporaPic/1/image-20200728222401151.png)
+![image-20200728222401151](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728222401151.jpg)
 
 ------
 
@@ -118,9 +118,9 @@
 
 我本机的Ip为 `192.168.8.*`，之后不要忘了 “应用选项” 来保存设置。
 
-![image-20200728223525257](/Users/haitao/Pictures/TyporaPic/1/image-20200728223525257.png)
+![image-20200728223525257](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728223525257.jpg)
 
-![image-20200728223458755](/Users/haitao/Pictures/TyporaPic/1/image-20200728223458755.png)
+![image-20200728223458755](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728223458755.jpg)
 
 ------
 
@@ -138,13 +138,13 @@
 
 之后，再次访问网站 `https://www.instagram.com/` 时就会自动使用 `ss代理` 模式来实现科学上网了。
 
-![image-20200728223738524](/Users/haitao/Pictures/TyporaPic/1/image-20200728223738524.png)
+![image-20200728223738524](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728223738524.jpg)
 
-![image-20200728223832160](/Users/haitao/Pictures/TyporaPic/1/image-20200728223832160.png)
+![image-20200728223832160](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728223832160.jpg)
 
-![image-20200728223915489](/Users/haitao/Pictures/TyporaPic/1/image-20200728223915489.png)
+![image-20200728223915489](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728223915489.jpg)
 
-![image-20200728224917237](/Users/haitao/Pictures/TyporaPic/1/image-20200728224917237.png)
+![image-20200728224917237](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728224917237.jpg)
 
 ------
 
@@ -179,7 +179,7 @@
 
 最后，点击左侧的 ”应用选项“ 保存设置。
 
-![image-20200728224357641](/Users/haitao/Pictures/TyporaPic/1/image-20200728224357641.png)
+![image-20200728224357641](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728224357641.jpg)
 
 ### 使用
 
@@ -193,7 +193,7 @@
 
 不过，在一段时间的体验后个人感觉这种方式其实没有上面的 “自动切换模式” 来的方便。
 
-![image-20200728224526509](/Users/haitao/Pictures/TyporaPic/1/image-20200728224526509.png)
+![image-20200728224526509](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728224526509.jpg)
 
 ------
 
@@ -223,7 +223,7 @@
 
 最后，别忘了点击左侧的 ”应用选项“ 保存设置。
 
-![image-20200728224737200](/Users/haitao/Pictures/TyporaPic/1/image-20200728224737200.png)
+![image-20200728224737200](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728224737200.jpg)
 
 #### 使用虚情景代理
 
@@ -235,7 +235,7 @@
 
 最后，点击左侧的 ”应用选项“ 保存设置。
 
-![image-20200728224822894](/Users/haitao/Pictures/TyporaPic/1/image-20200728224822894.png)
+![image-20200728224822894](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728224822894.jpg)
 
 #### 测试
 
@@ -247,27 +247,27 @@
 
 **先关闭急速切换模式**
 
-![image-20200728225209501](/Users/haitao/Pictures/TyporaPic/1/image-20200728225209501.png)
+![image-20200728225209501](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728225209501.jpg)
 
-![image-20200728225135721](/Users/haitao/Pictures/TyporaPic/1/image-20200728225135721.png)
+![image-20200728225135721](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728225135721.jpg)
 
 ## 导出、导入配置文件
 
 导出我们的配置 
 
-![image-20200728225544877](/Users/haitao/Pictures/TyporaPic/1/image-20200728225544877.png)
+![image-20200728225544877](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728225544877.jpg)
 
 来到一个从没有配置过的switch
 
-![image-20200728225721273](/Users/haitao/Pictures/TyporaPic/1/image-20200728225721273.png)
+![image-20200728225721273](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728225721273.jpg)
 
 导入我们的备份文件
 
-![image-20200728225824105](/Users/haitao/Pictures/TyporaPic/1/image-20200728225824105.png)
+![image-20200728225824105](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728225824105.jpg)
 
 效果
 
-![image-20200728225836949](/Users/haitao/Pictures/TyporaPic/1/image-20200728225836949.png)
+![image-20200728225836949](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200728225836949.jpg)
 
 
 
@@ -275,4 +275,4 @@
 
 https://gitee.com/haitaoss/PicBed/raw/master/2020/08/OmegaOptions.bak
 
-![image-20200819171120840](/Users/haitao/Pictures/TyporaPic/1/image-20200819171120840.png)
+![image-20200819171120840](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200819171120840.jpg)

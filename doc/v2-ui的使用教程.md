@@ -1,4 +1,4 @@
-## 不使用端口，通过路径访问到v2-ui管理界面（需安装nginx）
+# 不使用端口，通过路径访问到v2-ui管理界面（需安装nginx）
 
 流程：安装v2-ui -> 启动v2-ui -> 访问v2-ui管理界面 -> 登录 -> 点击面板设置侧边栏 -> 修改面板监听IP(可选)，修改网页根路径 -> 重启v2-ui (`v2-ui restart`)
 
@@ -69,15 +69,15 @@ server { # 将http服务重定向为https
 }
 ```
 
-## 使用v2-ui配置ws
+# 使用v2-ui配置ws
 
 ![image-20200823124710110](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823124710110.jpg)
 
-## 使用v2-ui配置ws+tls
+# 使用v2-ui配置ws+tls
 
 ![image-20200823125221123](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823125221123.jpg)
 
-## 使用v2-ui配置ws+nginx+tls(证书信息放到nginx不放在v2ray中设置)
+# 使用v2-ui配置ws+nginx+tls(证书信息放到nginx不放在v2ray中设置)
 
 传输流程：我们安装v2ray的客户端配置v2ray发送信息给 www.baidu.com:443/11618/ -> www.baidu.com这台服务器的nginx监听到了
 
@@ -176,9 +176,96 @@ server { # 将http服务重定向为https
 
 ![image-20200823130751181](https://gitee.com/haitaoss/PicBed/raw/master/science/image-20200823130751181.jpg)
 
+# 使用v2-ui配置ws+nginx+tls(正则匹配)
+
+效果：通过v2-ui添加一个ws模式的inbound，ws的path根据我们nginx配置的路径写即可，客户端直接接入就能实现ws+nginx+tls。（**不需要多次修改nginx的配置文件**）
+
+```shell
+root@ethical-frogs-2:~# vim /etc/nginx/conf/conf.d/v2ray.conf 
+root@ethical-frogs-2:~# systemctl restart nginx
+```
+
+```shell
+# nginx配置文件
+server {
+    listen 443 ssl http2;
+    listen [::]:443 http2;
+    ssl_certificate       /data/v2ray.crt; # 证书文件路径（通过脚本安装的话证书就是这些东西）
+    ssl_certificate_key   /data/v2ray.key;
+    ssl_protocols         TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_ciphers           TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES256:EECDH+aRSA+AES256:RSA+AES256:EECDH+ECDSA+3DES:EECDH+aRSA+3DES:RSA+3DES:!MD5;
+    server_name www.baidu.com;
+    index index.html index.htm;
+    root  /home/wwwroot/CamouflageSite; # 伪造站点文件路径
+    error_page 400 = /400.html;
+
+    # Config for 0-RTT in TLSv1.3
+    ssl_early_data on;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    add_header Strict-Transport-Security "max-age=31536000";
 
 
-## 使用v2-ui配置ws+nginx+tls+cdn（vps永不被墙）
+    access_log  /var/logs/nginx/web.access.log main;
+    error_log   /var/logs/nginx/web.access.log;
+
+    location /manager/ # 通过这个路径访问我们的v2-ui管理界面
+    {
+        proxy_redirect off;
+        proxy_pass http://127.0.0.1:65432;
+        proxy_http_version 1.1;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+
+        # Config for 0-RTT in TLSv1.3
+        proxy_set_header Early-Data $ssl_early_data;
+
+    }
+
+    # 正则匹配 https://www.baidu.com/1234/tls/ http://www.baidu.com/1234/tls/
+    # 通过正则匹配，我们只需要通过v2-ui管理界面添加一个ws模式的v2ray，ws的路径写成 /这个数字就使用v2-ui随机生成的端口即可/tls/
+    location ~ ^/(\d+)/tls/$ # ~ 区分大小写的正则匹配；^/ 以/开头；tls/$ 以tls/结尾;\d+ 匹配多个数字；() 分组，分好组后在下面的代码块中可以使用 $1 $2 取值
+    {
+        proxy_redirect off;
+        proxy_pass http://127.0.0.1:$1; # $1 取出正则匹配到的东西
+        proxy_http_version 1.1;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+
+        # Config for 0-RTT in TLSv1.3
+        proxy_set_header Early-Data $ssl_early_data;
+
+    }
+
+}
+server { # 将http服务重定向为https
+    listen 80;
+    listen [::]:80;
+    server_name www.baidu.com; # 修改成你的域名
+    # return 301 https://www.baidu.com:$server_port/$request_uri; # 修改成你的域名
+    return 301 https://www.baidu.com/$request_uri; # 修改成你的域名
+}
+```
+
+v2-ui的配置
+
+![image-20200824105359673](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200824105359673.jpg)
+
+客户端连接
+
+![image-20200824105451942](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200824105451942.jpg)
+
+![image-20200824105826533](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200824105826533.jpg)
+
+![image-20200824110001838](https://gitee.com/haitaoss/PicBed/raw/master/2020/08/image-20200824110001838.jpg)
+
+# 使用v2-ui配置ws+nginx+tls+cdn（vps永不被墙）
 
 我用的是cloudflare提供的免费cdn服务。
 
