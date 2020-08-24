@@ -556,13 +556,12 @@ nginx_conf_modify() {
     wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/nginx.conf
 
     cd /etc/nginx/conf/conf.d
+    rm -rf /etc/nginx/conf/conf.d/v2ray.conf
     wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2ray.conf
 
-
-
-    sed -i "/server_name/c \\\tserver_name ${domain};"/etc/nginx/conf/conf.d/v2ray.conf
-    sed -i "/proxy_pass/c \\\tproxy_pass http://127.0.0.1:65432;" /etc/nginx/conf/conf.d/v2ray.conf
-    sed -i "/return/c \\\treturn 301 https://${domain}:\$server_port/\$request_uri;" /etc/nginx/conf/conf.d/v2ray.conf
+    sed -i "/server_name www.baidu.com/c \\\tserver_name ${domain};"/etc/nginx/conf/conf.d/v2ray.conf
+    # sed -i "/proxy_pass/c \\\tproxy_pass http://127.0.0.1:65432;" /etc/nginx/conf/conf.d/v2ray.conf
+    sed -i "/return/c \\\treturn 301 https://${domain}/\$request_uri;" /etc/nginx/conf/conf.d/v2ray.conf
     cd ~
 
 
@@ -614,12 +613,6 @@ install_v2ui() {
     curl -o /usr/bin/v2-ui -Ls https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2-ui.sh
     chmod +x /usr/bin/v2-ui
 
-
-    judge "修改v2-ui 提供的模板文件，添加上log和dns"
-    cd /usr/local/v2-ui/template_config.json
-    rm -rf /usr/local/v2-ui/template_config.json
-    wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/template_config.json
-    cd /root/
 }
 install_bbr() {
     wget -N --no-check-certificate "https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/tcp.sh"
