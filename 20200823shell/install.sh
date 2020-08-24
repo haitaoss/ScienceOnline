@@ -505,22 +505,22 @@ EOF
 #     fi
 # }
 start_process_systemd() {
-    systemctl daemon-reload
-    if [[ "$shell_mode" != "h2" ]]; then
+    # systemctl daemon-reload
+    # if [[ "$shell_mode" != "h2" ]]; then
         systemctl restart nginx
         judge "Nginx 启动"
-    fi
+    # fi
     # systemctl restart v2ray
-    judge "V2ray 启动"
+    # judge "V2ray 启动"
 }
 
 enable_process_systemd() {
     # systemctl enable v2ray
-    judge "设置 v2ray 开机自启"
-    if [[ "$shell_mode" != "h2" ]]; then
+    # judge "设置 v2ray 开机自启"
+    # if [[ "$shell_mode" != "h2" ]]; then
         systemctl enable nginx
         judge "设置 Nginx 开机自启"
-    fi
+    # fi
 
 }
 
@@ -528,7 +528,7 @@ stop_process_systemd() {
     if [[ "$shell_mode" != "h2" ]]; then
         systemctl stop nginx
     fi
-    systemctl stop v2ray
+    # systemctl stop v2ray
 }
 nginx_process_disabled() {
     [ -f $nginx_systemd_file ] && systemctl stop nginx && systemctl disable nginx
@@ -557,9 +557,9 @@ nginx_conf_modify() {
 
     cd /etc/nginx/conf/conf.d
     wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2ray.conf
-    
-  
-   
+
+
+
     sed -i "/server_name/c \\\tserver_name ${domain};"/etc/nginx/conf/conf.d/v2ray.conf
     sed -i "/proxy_pass/c \\\tproxy_pass http://127.0.0.1:65432;" /etc/nginx/conf/conf.d/v2ray.conf
     sed -i "/return/c \\\treturn 301 https://${domain}:\$server_port/\$request_uri;" /etc/nginx/conf/conf.d/v2ray.conf
@@ -596,14 +596,50 @@ install_v2ray_ws_tls() {
     acme_cron_update
 }
 install_v2ui() {
-    bash <(curl -Ls https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2-ui.sh)
+    judge "手动安装v2-ui 版本"
+    cd /root/
+    wget "https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2-ui-5.4.0-linux.tar.gz"
+    mv v2-ui-5.4.0-linux.tar.gz /usr/local/
+    cd /usr/local/
+    tar zxvf v2-ui-5.4.0-linux.tar.gz
+    rm v2-ui-5.4.0-linux.tar.gz -f
+    cd v2-ui
+    chmod +x v2-ui bin/v2ray-v2-ui bin/v2ctl
+    cp -f v2-ui.service /etc/systemd/system/
+    systemctl daemon-reload
+    systemctl enable v2-ui
+    systemctl restart v2-ui
+
+    judge "下载脚本文件"
+    curl -o /usr/bin/v2-ui -Ls https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2-ui.sh
+    chmod +x /usr/bin/v2-ui
+
+
+    judge "修改v2-ui 提供的模板文件，添加上log和dns"
+    cd /usr/local/v2-ui/template_config.json
+    rm -rf /usr/local/v2-ui/template_config.json
+    wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/template_config.json
+    cd /root/
 }
 install_bbr() {
     wget -N --no-check-certificate "https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/tcp.sh"
     chmod +x tcp.sh
     bash ./tcp.sh
 }
+uninstall_v2-ui() {
+    judge "卸载v2-ui面板"
+    systemctl stop v2-ui
+    systemctl disable v2-ui
+    rm /usr/local/v2-ui/ -rf
+    rm /etc/v2-ui/ -rf
+    rm /etc/systemd/system/v2-ui.service -f
+    systemctl daemon-reload
+}
+bak_v2-ui_database (){
+    judge "数据文件已经备份到/root"
+    cp /etc/v2-ui/v2-ui.db /root
 
+}
 menu() {
     echo -e "\t---authored by haitao---"
     echo -e "\t脚本摘自 https://github.com/wulabing/V2Ray_ws-tls_bash_onekey\n"
@@ -614,9 +650,15 @@ menu() {
     echo -e "${Green}0.${Font}  安装nginx和安装域名证书（ssl）"
     echo -e "${Green}1.${Font}  安装v2ui(多用户管理面板，还可以简单的查看每个用户的流量)"
     echo -e "${Green}2.${Font}  安装bbr加速(先选择2，然后重启，再次执行脚本在选7)"
+
+    echo -e "—————————————— 日志 ——————————————"""
     echo -e "${Green}3.${Font}  查看v2ray访问日志"
     echo -e "${Green}4.${Font}  查看nginx访问日志"
-    echo -e "${Green}5.${Font}  退出 \n"
+
+    echo -e "—————————————— 其他 ——————————————"""
+    echo -e "${Green}5.${Font}  卸载v2-ui面板"
+    echo -e "${Green}6.${Font}  v2-ui数据文件已经备份"
+    echo -e "${Green}7.${Font}  退出 \n"
 
     read -rp "请输入数字：" menu_num
     case $menu_num in
@@ -635,8 +677,14 @@ menu() {
     4)
         tail -20f /var/logs/nginx/web.access.log
         ;;
-
     5)
+        uninstall_v2-ui
+        ;;
+    6)
+        bak_v2-ui_database
+        ;;
+
+    7)
         exit 0
         ;;
     *)
