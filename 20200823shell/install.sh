@@ -612,21 +612,7 @@ install_v2ui() {
     judge "下载脚本文件"
     curl -o /usr/bin/v2-ui -Ls https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2-ui.sh
     chmod +x /usr/bin/v2-ui
-
-}
-install_bbr() {
-    wget -N --no-check-certificate "https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/tcp.sh"
-    chmod +x tcp.sh
-    bash ./tcp.sh
-}
-uninstall_v2-ui() {
-    judge "卸载v2-ui面板"
-    systemctl stop v2-ui
-    systemctl disable v2-ui
-    rm /usr/local/v2-ui/ -rf
-    rm /etc/v2-ui/ -rf
-    rm /etc/systemd/system/v2-ui.service -f
-    systemctl daemon-reload
+    
     echo -e "${green}v2-ui v${last_version}${plain} 安装完成，面板已启动，"
     echo -e ""
     echo -e "如果是全新安装，默认网页端口为 ${green}65432${plain}，用户名和密码默认都是 ${green}admin${plain}"
@@ -648,6 +634,22 @@ uninstall_v2-ui() {
     echo -e "v2-ui install      - 安装 v2-ui 面板"
     echo -e "v2-ui uninstall    - 卸载 v2-ui 面板"
     echo -e "----------------------------------------------"
+
+}
+install_bbr() {
+    wget -N --no-check-certificate "https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/tcp.sh"
+    chmod +x tcp.sh
+    bash ./tcp.sh
+}
+uninstall_v2-ui() {
+    judge "卸载v2-ui面板"
+    systemctl stop v2-ui
+    systemctl disable v2-ui
+    rm /usr/local/v2-ui/ -rf
+    rm /etc/v2-ui/ -rf
+    rm /etc/systemd/system/v2-ui.service -f
+    systemctl daemon-reload
+   
 }
 bak_v2-ui_database (){
     judge "数据文件已经备份到/root"
