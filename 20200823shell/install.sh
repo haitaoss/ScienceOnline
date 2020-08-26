@@ -627,6 +627,27 @@ uninstall_v2-ui() {
     rm /etc/v2-ui/ -rf
     rm /etc/systemd/system/v2-ui.service -f
     systemctl daemon-reload
+    echo -e "${green}v2-ui v${last_version}${plain} 安装完成，面板已启动，"
+    echo -e ""
+    echo -e "如果是全新安装，默认网页端口为 ${green}65432${plain}，用户名和密码默认都是 ${green}admin${plain}"
+    echo -e "请自行确保此端口没有被其他程序占用，${yellow}并且确保 65432 端口已放行${plain}"
+    echo -e "若想将 65432 修改为其它端口，输入 v2-ui 命令进行修改，同样也要确保你修改的端口也是放行的"
+    echo -e ""
+    echo -e "如果是更新面板，则按你之前的方式访问面板"
+    echo -e "v2-ui 管理脚本使用方法: "
+    echo -e "----------------------------------------------"
+    echo -e "v2-ui              - 显示管理菜单 (功能更多)"
+    echo -e "v2-ui start        - 启动 v2-ui 面板"
+    echo -e "v2-ui stop         - 停止 v2-ui 面板"
+    echo -e "v2-ui restart      - 重启 v2-ui 面板"
+    echo -e "v2-ui status       - 查看 v2-ui 状态"
+    echo -e "v2-ui enable       - 设置 v2-ui 开机自启"
+    echo -e "v2-ui disable      - 取消 v2-ui 开机自启"
+    echo -e "v2-ui log          - 查看 v2-ui 日志"
+    echo -e "v2-ui update       - 更新 v2-ui 面板"
+    echo -e "v2-ui install      - 安装 v2-ui 面板"
+    echo -e "v2-ui uninstall    - 卸载 v2-ui 面板"
+    echo -e "----------------------------------------------"
 }
 bak_v2-ui_database (){
     judge "数据文件已经备份到/root"
