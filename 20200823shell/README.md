@@ -15,6 +15,7 @@
 - v2ray.conf ： nginx自主添加的配置文件
 - nginx.conf ： nginx默认的配置文件
 - config_template.json ： v2-ui的模板文件，默认的模板文件没有log、和dns这里我加上了。
+- ==如果使用域名，得使用二级域名（www.baidu.com|hhh.baidu.com 这样子的，顶级域名baidu.com 在nginx转发到本地v2-ui的时候会有问题）==
 
 # 使用
 
