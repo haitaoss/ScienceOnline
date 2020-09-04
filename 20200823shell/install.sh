@@ -559,7 +559,7 @@ nginx_conf_modify() {
     rm -rf /etc/nginx/conf/conf.d/v2ray.conf
     wget https://raw.githubusercontent.com/haitaoss/ScienceOnline/master/20200823shell/v2ray.conf
 
-    sed -i "/server_name /c \\\tserver_name ${domain};"/etc/nginx/conf/conf.d/v2ray.conf
+    sed -i "/server_name /c \\\tserver_name ${domain};" /etc/nginx/conf/conf.d/v2ray.conf
     # sed -i "/proxy_pass/c \\\tproxy_pass http://127.0.0.1:65432;" /etc/nginx/conf/conf.d/v2ray.conf
     sed -i "/return/c \\\treturn 301 https://${domain}/\$request_uri;" /etc/nginx/conf/conf.d/v2ray.conf
     cd ~
