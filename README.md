@@ -2,9 +2,9 @@
 
 v2ray官方学习文档：https://www.v2ray.com/
 
-免费域名购买教程：https://wws.lanzous.com/i8OZ5gca2oj
+免费域名购买教程(视频)：https://wws.lanzous.com/i8OZ5gca2oj
 
-域名解析视频教程：链接:   密码: wd5v
+域名解析视频教程（视频）：链接: https://pan.baidu.com/s/1hLJ7kvDUsSdqugp6-BMT9A  密码: 4wgu
 
 vultr vps购买教程（图文）：https://github.com/bannedbook/fanqiang/blob/master/v2ss/%E8%B4%AD%E4%B9%B0Vultr%20VPS%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B.md
 可以点击我这个链接来注册账号https://www.vultr.com/?ref=8640628（这是邀请好友活动）
