@@ -1,4 +1,18 @@
+################################# 测试哪种加密算法适合自己 ##################################
 
+
+# 优先选用支持AEAD的加密算法，AE -> 对称加密，AD -> 验证
+lscpu | grep aes # 检查cpu是否支持aes指令集
+openssl speed -evp aes-256-gcm
+openssl speed -evp chacha20-poly1305 # 对aes和chacha进行测速，每秒处理的数据越多越快
+# openssl 1.1.0版本才开始支持chacha
+# mbedTLS支持chacha，但在arm平台上的aes性能不如openssl
+# armv8才开始支持aes指令集
+# aes-256-gcm在A10芯片上表现非常不好，aes-128-gcm足够用了
+# V2ray使用的是openssl，而ss-libev使用的是mbedTLS
+
+
+# 总结：若服务端与客户端cpu都支持aes指令集，推荐V2ray + aes-128-gcm；否则推荐V2ray/ss + chacha20-poly1305
 
 ################################# 测试当前网络最快的dns厂商 ##################################
 ping 114.114.114.114 -c 4;ping 119.29.29.29 -c 4;ping 223.6.6.6 -c 4;ping 180.76.76.76 -c 4;ping 101.226.4.6 -c 4;ping 8.8.8.8 -c 4
