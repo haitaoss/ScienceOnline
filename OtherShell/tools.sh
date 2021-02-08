@@ -76,4 +76,25 @@ acme.sh --install-cert -d baidu.tk -d *.baidu.tk \
 --fullchain-file /data/baidu.tk.cer \
 --reloadcmd  "service nginx force-reload"
 
+# ----------------------------------------------------------------------------
+# 替换域名的步骤
+# 删除之前的证书文件
+rm -rf /data
 
+# 停止nginx
+systemctl stop nginx
+
+# 生成证书
+"$HOME"/.acme.sh/acme.sh --issue -d "bwg.haitaoss.ml" --standalone -k ec-256 --force
+
+mkdir /data
+
+"$HOME"/.acme.sh/acme.sh --installcert -d "bwg.haitaoss.ml" --fullchainpath /data/v2ray.crt --keypath /data/v2ray.key --ecc --force
+
+# 启动nginx
+systemctl start nginx
+
+# 修改nginx的配置文件
+vim /etc/nginx/conf/conf.d/v2ray.conf
+
+# ----------------------------------------------------------------------------
