@@ -2,7 +2,7 @@
 
 v2ray官方学习文档：https://www.v2ray.com/
 
-免费域名购买教程(视频)：https://wws.lanzous.com/i8OZ5gca2oj
+免费域名购买教程(视频)：https://wws.lanzoui.com/i8OZ5gca2oj
 
 域名解析视频教程（视频）：链接: https://pan.baidu.com/s/1hLJ7kvDUsSdqugp6-BMT9A  密码: 4wgu
 
